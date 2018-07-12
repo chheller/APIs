@@ -12,6 +12,8 @@ There is many ways to help me with this repository. You can:
 Please explain what you did in your pull request and update the
 CONTRIBUTORS.md file.
 
+**Working on your first Pull Request?** See [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
+
 ## Adding a new version of this API
 
 Before adding a new version of the API please:
