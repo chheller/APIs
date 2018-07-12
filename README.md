@@ -15,6 +15,7 @@ in one of the simplest case.
   - [Vert.x]
   - [Spark]
 - Python
+  - [Bottle]
   - [Flask]
 
 ## Routes
@@ -52,6 +53,7 @@ Contributions are very welcome ! Please see the [contribution guidlines].
 
 [Vert.x]: https://vertx.io
 [Spark]:  http://sparkjava.com
+[Bottle]: http://bottlepy.org/docs/dev/index.html
 [Flask]:  http://flask.pocoo.org
 
 [contribution guidlines]: https://github.com/pBouillon/APIs/blob/master/CONTRIBUTING.md
