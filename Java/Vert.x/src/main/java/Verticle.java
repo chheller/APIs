@@ -6,7 +6,24 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 
+/**
+ * Verticle to handle entrypoints and response
+ * 
+ * This class implements basic functionnalities for the API:
+ * - database initialization
+ * - user creation
+ * - user suppression
+ * 
+ * @version 0.1
+ */
 public class Verticle extends AbstractVerticle {
+
+    /**
+     * Router initialization
+     * 
+     * Handle the three routes "/", "/users/:id", "/users" for
+     * all basic operations
+     */
     @Override
     public void start(Future<Void> fut) {
         Router router = Router.router(vertx);
@@ -34,6 +51,16 @@ public class Verticle extends AbstractVerticle {
                 );
     }
 
+    /**
+     * Add a user to the database
+     * 
+     * From a JSON payload, create a new record in the database
+     * Payload should provide relevant information, which are:
+     *  - name as a string
+     *  - age as an integer
+     * 
+     * Return succes on operation success
+     */
     private void addUser(RoutingContext routingContext) {
         JsonObject payload = routingContext.getBodyAsJson();
 
@@ -48,9 +75,18 @@ public class Verticle extends AbstractVerticle {
                 .end("Success");
     }
 
+    /**
+     * Show user's information
+     * 
+     * Given an ID, retrieve user's information
+     * ID is expected in the URL
+     * 
+     * Return the user's information with "name" and "age" as keys
+     */
     private void getUser(RoutingContext routingContext) {
         String id = routingContext.request().getParam("id");
 
+        // Ensure that the ID is correctly given
         if (id == null) {
             routingContext.response().setStatusCode(400).end();
         } else {
@@ -60,6 +96,11 @@ public class Verticle extends AbstractVerticle {
         }
     }
 
+    /**
+     * Basic entrypoint
+     * 
+     * Basic app's entrypoint. Greets the user with its framework
+     */
     private void grettings(RoutingContext routingContext) {
         HttpServerResponse response = routingContext.response();
         response
