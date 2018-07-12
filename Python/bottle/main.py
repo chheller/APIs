@@ -59,7 +59,7 @@ def add_user():
         - age as an integer
 
     Returns:
-        JSON: ``{'message': 'success'}`on success
+        JSON: ``{'message': 'success'}`` on success
     """
     # ensure that the request is correct and contains relevant keys
     if not request.json \
