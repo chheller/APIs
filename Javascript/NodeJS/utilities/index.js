@@ -1,4 +1,9 @@
 module.exports = {
+  /**
+   *  Parses the body of a request
+   * @param {Request} request
+   * @returns {Promise<Object>} A promise containing the parsed body
+   */
   parseBody(request) {
     const body = [];
     return new Promise(resolve => {

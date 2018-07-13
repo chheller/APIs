@@ -39,10 +39,6 @@ class MongoDb {
     return this.insertUsers([user]);
   }
 
-  findUser(id) {
-    return this.findUsers([id]);
-  }
-
   findUsers(ids) {
     const collection = this.db.collection("users");
     return collection

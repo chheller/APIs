@@ -7,7 +7,11 @@ class DefaultRoutes {
     sendResponse(response, "Hello from Vanilla NodeJS!");
   }
 }
-
+/**
+ * @class Router
+ * @property {Object} svcs The services to inject into the router's routes
+ * @property {Object} routes The defined routes for the app to use
+ */
 class Router {
   constructor(svcs) {
     this.svcs = svcs;
@@ -17,6 +21,11 @@ class Router {
     };
   }
 
+  /**
+   * Handles all incoming requests, routing them to the appropriate router function
+   * @param {Request} request
+   * @param {Response} response
+   */
   handleRequest(request, response) {
     const url = request.url.split("/")[1];
     const method = request.method.toLowerCase();

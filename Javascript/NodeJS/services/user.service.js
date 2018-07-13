@@ -1,3 +1,7 @@
+/**
+ * Service for adding and getting users
+ * @class UserService
+ */
 class UserService {
   constructor(db) {
     this.db = db;
@@ -6,8 +10,9 @@ class UserService {
   addUser(user) {
     return this.db.insertUser(user);
   }
+
   getUser(id) {
-    return this.db.findUser(id);
+    return this.findUsers([id]);
   }
   getAllUsers(ids) {
     return this.db.findUsers(ids);
