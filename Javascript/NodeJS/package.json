@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "start": "node main.js"
+  },
+  "name": "NodeJS",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "mongodb": "3.1.1"
+  }
+}
