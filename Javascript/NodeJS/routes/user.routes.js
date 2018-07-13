@@ -15,12 +15,12 @@ class UserRoutes {
           })
           .catch(err => {
             console.error(err);
-            handleError(500, err);
+            handleError(response, 500, err);
           });
       })
       .catch(err => {
         console.error(err);
-        handleError(500, err, response);
+        handleError(response, 500, err);
       });
   }
 
@@ -31,7 +31,7 @@ class UserRoutes {
         if (!!user && user.length > 0) {
           sendResponse(response, { user });
         } else {
-          handleError(404, "Resource Not Found", response);
+          handleError(response, 404, "Resource Not Found");
         }
       });
     }

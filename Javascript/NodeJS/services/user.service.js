@@ -12,7 +12,7 @@ class UserService {
   }
 
   getUser(id) {
-    return this.findUsers([id]);
+    return this.getAllUsers([id]);
   }
   getAllUsers(ids) {
     return this.db.findUsers(ids);

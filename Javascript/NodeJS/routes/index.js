@@ -35,18 +35,19 @@ class Router {
         try {
           this.routes.user[method](request, response);
         } catch (err) {
-          handleError(405, "Method Not Allowed", response);
+          console.error(err);
+          handleError(response, 405, "Method Not Allowed");
         }
         break;
       case "":
         try {
           this.routes.default[method](request, response);
         } catch (err) {
-          handleError(405, "Method Not Allowed", response);
+          handleError(response, 405, "Method Not Allowed");
         }
         break;
       default:
-        handleError(404, "Route Not Found", response);
+        handleError(response, 404, "Route Not Found");
         break;
     }
   }

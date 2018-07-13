@@ -15,7 +15,7 @@ module.exports = {
 
   handleError(response, status, msg) {
     response.writeHead(status || 500, { "Content-Type": "text/plain" });
-    response.write(msg);
+    response.write(JSON.stringify(msg));
     response.end();
   },
 
