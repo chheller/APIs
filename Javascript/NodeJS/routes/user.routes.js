@@ -1,4 +1,4 @@
-const { parseBody } = require("../utilities");
+const { parseBody, handleError, sendResponse } = require("../utilities");
 
 class UserRoutes {
   constructor(userSvc) {
@@ -11,17 +11,16 @@ class UserRoutes {
         this.userSvc
           .addUser({ name: body.name, age: body.age })
           .then(result => {
-            response.writeHead(200, { "Content-type": "application/json" });
-            response.write(JSON.stringify(result.ops));
-            response.end();
+            sendResponse(response, result.ops);
           })
-          .catch(err => console.error(err));
+          .catch(err => {
+            console.error(err);
+            handleError(500, err);
+          });
       })
       .catch(err => {
         console.error(err);
-        response.writeHead(404, { "Content-type": "text/plain" });
-        response.write(err);
-        response.end();
+        handleError(500, err, response);
       });
   }
 
@@ -30,19 +29,14 @@ class UserRoutes {
     if (params) {
       return this.userSvc.getUser(params).then(user => {
         if (!!user && user.length > 0) {
-          response.writeHead(200, { "Content-Type": "application/json" });
-          response.write(JSON.stringify({ user }));
+          sendResponse(response, { user });
         } else {
-          response.writeHead(404, { "Content-Type": "text/plain" });
-          response.write("User not found");
+          handleError(404, "Resource Not Found", response);
         }
-        response.end();
       });
     }
     return this.userSvc.getAllUsers().then(users => {
-      response.writeHead(200, { "Content-Type": "application/json" });
-      response.write(JSON.stringify({ users }));
-      response.end();
+      sendResponse(response, { users });
     });
   }
 }
