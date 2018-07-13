@@ -10,12 +10,14 @@ class UserService {
   addUser(user) {
     return this.db.insertUser(user);
   }
-
   getUser(id) {
-    return this.getAllUsers([id]);
+    return this.getUsers([id]);
   }
-  getAllUsers(ids) {
+  getUsers(ids) {
     return this.db.findUsers(ids);
+  }
+  getAllUsers() {
+    return this.db.findUsers();
   }
 }
 

@@ -23,21 +23,39 @@ class UserRoutes {
         handleError(response, 500, err);
       });
   }
-
+  /**
+   * Responds to a route matching 'users' with an optional id paramter to search
+   * @param {Request} request
+   * @param {Response} response
+   *
+   */
   get(request, response) {
     const params = request.url.split("/")[2];
+
     if (params) {
-      return this.userSvc.getUser(params).then(user => {
-        if (!!user && user.length > 0) {
-          sendResponse(response, { user });
-        } else {
-          handleError(response, 404, "Resource Not Found");
-        }
-      });
+      const ids = params
+        .split(",")
+        .filter(id => typeof id === "string" && id.length > 0);
+      return this.userSvc
+        .getUsers(ids)
+        .then(user => {
+          if (!!user && user.length > 0) {
+            sendResponse(response, { user });
+          } else {
+            handleError(response, 404, "Resource Not Found");
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          handleError(response, 500);
+        });
     }
-    return this.userSvc.getAllUsers().then(users => {
-      sendResponse(response, { users });
-    });
+    return this.userSvc
+      .getAllUsers()
+      .then(users => {
+        sendResponse(response, { users });
+      })
+      .catch(err => handleError(response, 500));
   }
 }
 
