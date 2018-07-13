@@ -1,3 +1,5 @@
+const parseBody = require("parse");
+
 class UserRoutes {
   constructor(userSvc) {
     this.userSvc = userSvc;
@@ -43,15 +45,6 @@ class UserRoutes {
       response.end();
     });
   }
-}
-
-function parseBody(request) {
-  const body = [];
-  return new Promise(resolve => {
-    request.on("data", chunk => body.push(chunk)).on("end", () => {
-      resolve(JSON.parse(Buffer.concat(body).toString()));
-    });
-  });
 }
 
 module.exports = UserRoutes;

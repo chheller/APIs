@@ -1,7 +1,7 @@
 const http = require("http");
 const Router = require("./routes");
 const MongoDb = require("./database");
-const UserService = require("./user.service");
+const UserService = require("./services/user.service");
 
 class App {
   constructor(port = process.env.PORT || 3000) {
