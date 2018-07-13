@@ -1,4 +1,4 @@
-const parseBody = require("parse");
+const { parseBody } = require("../utilities");
 
 class UserRoutes {
   constructor(userSvc) {

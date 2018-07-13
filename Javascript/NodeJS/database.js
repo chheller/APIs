@@ -1,18 +1,15 @@
 const users = require("./data/users.json");
+const { MongoClient, ObjectId } = require("mongodb");
 
-const client = require("mongodb").MongoClient;
-const ObjectId = require("mongodb").ObjectId;
 const DB_URL = "mongodb://localhost:32771";
-const DB_NAME = "data.db";
 
 class MongoDb {
   constructor() {
     const self = this;
-    client
-      .connect(
-        DB_URL,
-        { useNewUrlParser: true }
-      )
+    MongoClient.connect(
+      DB_URL,
+      { useNewUrlParser: true }
+    )
       .then(database => {
         self.db = database.db("admin");
         this.intializeDb();
