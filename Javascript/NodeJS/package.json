@@ -4,11 +4,11 @@
   },
   "name": "NodeJS",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "main.js",
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": "",
+  "license": "MIT",
+  "description": "A Barebones NodeJS API",
   "dependencies": {
     "mongodb": "3.1.1"
   }

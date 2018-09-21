@@ -1,4 +1,4 @@
-const { parseBody, handleError, sendResponse } = require("../utilities");
+const { parseBody, handleError, sendResponse } = require('../utilities');
 
 class UserRoutes {
   constructor(userSvc) {
@@ -8,19 +8,13 @@ class UserRoutes {
   post(request, response) {
     return parseBody(request)
       .then(body => {
-        this.userSvc
-          .addUser({ name: body.name, age: body.age })
-          .then(result => {
-            sendResponse(response, result.ops);
-          })
-          .catch(err => {
-            console.error(err);
-            handleError(response, 500, err);
-          });
+        this.userSvc.addUser({ name: body.name, age: body.age }).then(result => {
+          sendResponse(response, result.ops);
+        });
       })
       .catch(err => {
         console.error(err);
-        handleError(response, 500, err);
+        handleError(response, 500, err.message);
       });
   }
   /**
@@ -30,19 +24,17 @@ class UserRoutes {
    *
    */
   get(request, response) {
-    const params = request.url.split("/")[2];
+    const params = request.url.split('/')[2];
 
     if (params) {
-      const ids = params
-        .split(",")
-        .filter(id => typeof id === "string" && id.length > 0);
+      const ids = params.split(',').filter(id => typeof id === 'string' && id.length > 0);
       return this.userSvc
         .getUsers(ids)
         .then(user => {
           if (!!user && user.length > 0) {
             sendResponse(response, { user });
           } else {
-            handleError(response, 404, "Resource Not Found");
+            handleError(response, 404, 'Resource Not Found');
           }
         })
         .catch(err => {
